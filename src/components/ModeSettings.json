@@ -1,0 +1,42 @@
+{
+    "normal": {
+        "type": "normal",
+        "bg_color": "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)"
+    },
+    "confession": {
+        "type": "confession",
+        "bg_color": "#32ACF1 linear-gradient(to bottom right, #32ACF1 0%, #6039FF 100%)"
+    },
+    "3words": {
+        "type": "3words",
+        "bg_color": "#FF008A linear-gradient(to bottom right, #FF008A 0%, #D30000 100%)"
+    },
+    "3neverhave": {
+        "type": "3neverhave",
+        "bg_color": "#2D0049 linear-gradient(to bottom right, #2D0049 0%, #8E00E5 100%)"
+    },
+    "tbh": {
+        "type": "tbh",
+        "bg_color": "#FF3636 linear-gradient(to bottom right, #FF3636 0%, #FF75F9 100%)"
+    },
+    "shipme": {
+        "type": "shipme",
+        "bg_color": "#000000 linear-gradient(to bottom right, #000000 0%, #003AD3 100%)"
+    },
+    "yourcrush": {
+        "type": "yourcrush",
+        "bg_color": "#F25EFF linear-gradient(to bottom right, #F25EFF 0%, #00C2FF 100%)"
+    },
+    "cancelled": {
+        "type": "cancelled",
+        "bg_color": "#730053 linear-gradient(to bottom right, #730053 0%, #007474 100%)"
+    },
+    "dealbreaker": {
+        "type": "dealbreaker",
+        "bg_color": "#FF4079 linear-gradient(to bottom right, #FF4079 0%, #5403D9 100%)"
+    },
+    "random": {
+        "type": "random",
+        "bg_color": "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)"
+    }
+}
