@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "build": "cd ../ && npm build",
     "deploy": "cd ../ && npm install && cd ./server && npm run build && serve -s build"
   },
   "author": "",
