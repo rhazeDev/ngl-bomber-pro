@@ -48,7 +48,7 @@ app.post('/api/submit',async (req, res) => {
     };
     const requestData = {
       referrer: "https://l.facebook.com/",
-      username: username,
+      username: username.toLowerCase(),
       question: isRandom ? messages[Math.floor(Math.random() * messages.length)] : question,
       deviceId: "08ad4bb1-1275-4e4e-acd7-69" + deviceid(),
       gameSlug: gameSlug === 'normal' ? '' : (gameSlug === 'random' ? GAMESLUGS[Math.floor(Math.random() * GAMESLUGS.length)] : gameSlug),
