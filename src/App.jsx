@@ -84,6 +84,7 @@ export default function App() {
   async function ChangeRandom() {
     setIsRandom(!isRandom);
     document.getElementById('random').style.backgroundColor = isRandom ? 'rgba(255, 255, 255, 0.3)' : 'rgba(11, 156, 49, 0.5)';
+    document.getElementById('message').disabled = isRandom;
   }
 
   return (
