@@ -11,10 +11,10 @@ const __dirname = dirname(__filename);
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.post('/api/submit',async (req, res) => {
@@ -48,7 +48,7 @@ app.post('/api/submit',async (req, res) => {
     };
     const requestData = {
       referrer: "https://l.facebook.com/",
-      username: username,
+      username: username.toLowerCase(),
       question: isRandom ? messages[Math.floor(Math.random() * messages.length)] : question,
       deviceId: "08ad4bb1-1275-4e4e-acd7-69" + deviceid(),
       gameSlug: gameSlug === 'normal' ? '' : (gameSlug === 'random' ? GAMESLUGS[Math.floor(Math.random() * GAMESLUGS.length)] : gameSlug),
