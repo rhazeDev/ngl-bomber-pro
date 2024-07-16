@@ -18,7 +18,7 @@ Watch Demo Video Below:
 - Ship Me
 - Your Crush
 - Cancelled
-- Deal BReaker
+- Deal Breaker
 - Random
 
 <br>
@@ -35,10 +35,10 @@ To deploy locally you need to install the following
 ### Installation
 ------------
 ```bash
-git clone https://github.com/RhazeCoder/ngl-bomber
+git clone https://github.com/RhazeCoder/ngl-bomber-pro
 ```
 ```bash
-cd ngl-bomber
+cd ngl-bomber-pro
 ```
 ```bash
 npm install
