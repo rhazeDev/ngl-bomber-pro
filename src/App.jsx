@@ -11,21 +11,44 @@ export default function App() {
   const [success, setSuccess] = useState(0);
   const [failed, setFailed] = useState(0);
   const { gameSlug } = useContext(GameSlugContext);
+  const [stopSpam, setStopSpam] = useState(false);
   const [isRandom, setIsRandom] = useState(false);
-  const [shouldSendMessage, setShouldSendMessage] = useState(false);
+  const [intervalId, setIntervalId] = useState(null);
 
   useEffect(() => {
-    if (shouldSendMessage) {
+    if (stopSpam) {
       StartSpam();
-      setShouldSendMessage(false);
+    } else {
+      if (intervalId) {
+        clearInterval(intervalId);
+        setIntervalId(null);
+        setTimeout(() => {
+          if (!stopSpam)  {
+            setResponse("Spamming Stopped")
+          }
+        }, 2000);
+      }
     }
-  }, [username, message]);
+  }, [stopSpam]);
+
+  useEffect(() => {
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [intervalId]);
 
   function StartSpam() {
-    SendMessage();
-    const intervalId = setTimeout(StartSpam, 500);
-    if (response === '404') {
-      clearInterval(intervalId);
+    if (stopSpam) {
+      const id = setInterval(() => {
+        SendMessage();
+        if (response === '404') {
+          clearInterval(id);
+          setIntervalId(null);
+        }
+      }, 500);
+      setIntervalId(id);
     }
   }
 
@@ -40,23 +63,20 @@ export default function App() {
       isRandom: isRandom
     };
 
-
-    console.log(requestData)
     try {
-      fetch("/api/submit", {
+      const res = await fetch("/api/submit", {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(requestData)
-      }).then(response => response.json())
-        .then(data => {
-          setResponse(data.message);
-          setTotal(prevTotal => prevTotal + 1);
-          if (data.message === 'Success') {
-            setSuccess(prevSuccess => prevSuccess + 1);
-          } else {
-            setFailed(prevFailed => prevFailed + 1);
-          }
-        });
+      });
+      const data = await res.json();
+      setResponse(data.message);
+      setTotal(prevTotal => prevTotal + 1);
+      if (data.message === 'Success') {
+        setSuccess(prevSuccess => prevSuccess + 1);
+      } else {
+        setFailed(prevFailed => prevFailed + 1);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -64,27 +84,35 @@ export default function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setUsername(document.getElementById('username').value);
-    setMessage(document.getElementById('message').value);
-    let usernameInput = document.getElementById('username').value;
-    let messageInput = document.getElementById('message').value;
-    if (usernameInput === '' || usernameInput === null) {
+    const usernameInput = document.getElementById('username').value;
+    const messageInput = document.getElementById('message').value;
+    if (usernameInput === '') {
       alert('Please enter a username');
       return;
     }
 
-    if (messageInput === '' || messageInput === null) {
+    setUsername(usernameInput);
+    setMessage(messageInput);
+
+    if (messageInput === '') {
       setIsRandom(true);
       document.getElementById('random').style.backgroundColor = 'rgba(11, 156, 49, 0.5)';
     }
 
-    setShouldSendMessage(true);
+    setStopSpam(prevStopSpam => {
+      const newStopSpam = !prevStopSpam;
+      document.getElementById('send-button').innerHTML = newStopSpam ? 'Stop' : 'Start';
+      return newStopSpam;
+    });
   }
 
   async function ChangeRandom() {
-    setIsRandom(!isRandom);
-    document.getElementById('random').style.backgroundColor = isRandom ? 'rgba(255, 255, 255, 0.3)' : 'rgba(11, 156, 49, 0.5)';
-    document.getElementById('message').disabled = isRandom;
+    setIsRandom(prevIsRandom => {
+      const newIsRandom = !prevIsRandom;
+      document.getElementById('random').style.backgroundColor = newIsRandom ? 'rgba(11, 156, 49, 0.5)' : 'rgba(255, 255, 255, 0.3)';
+      document.getElementById('message').disabled = newIsRandom;
+      return newIsRandom;
+    });
   }
 
   return (
@@ -104,11 +132,10 @@ export default function App() {
           <div className="random" id="random" onClick={ChangeRandom}>🎲</div>
         </div>
         <div id="response-container">
-
           <p id="response">{response}</p>
         </div>
         <div id="send-button-container"></div>
-        <button id="send-button" type="submit">Spam Now!</button>
+        <button id="send-button" type="submit">Start</button>
       </form>
       <p id="creator">Made with 🖤 by&nbsp;&nbsp;<a href="https://github.com/RhazeCoder" target='_blank'>RhazeCoder</a></p>
     </>

@@ -1,0 +1,46 @@
+[debug] [2024-09-15T13:45:22.950Z] ----------------------------------------------------------------------
+[debug] [2024-09-15T13:45:22.953Z] Command:       /nix/store/aspnwxp3q1wvg8jd1zg0295zmhr3lkb3-nodejs-18.19.1/bin/node /nix/store/pf4ama10fsjb161xrxgsyqi21qm10wc6-firebase-tools-13.13.1/lib/node_modules/firebase-tools/lib/bin/firebase.js init hosting
+[debug] [2024-09-15T13:45:22.954Z] CLI Version:   13.13.1
+[debug] [2024-09-15T13:45:22.954Z] Platform:      linux
+[debug] [2024-09-15T13:45:22.955Z] Node Version:  v18.19.1
+[debug] [2024-09-15T13:45:22.955Z] Time:          Sun Sep 15 2024 13:45:22 GMT+0000 (Coordinated Universal Time)
+[debug] [2024-09-15T13:45:22.956Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-15T13:45:22.965Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-15T13:45:22.966Z] > authorizing via signed-in user (agcanasjustine1@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/user/ngl-bomber-pro
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2024-09-15T13:45:41.605Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-09-15T13:45:41.605Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"ngl-bomber-pro","name":"ngl-bomber-pro"}
+[debug] [2024-09-15T13:45:43.103Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2024-09-15T13:45:43.104Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/cp.7469460749850483622"}
+[debug] [2024-09-15T13:45:43.105Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.7469460749850483622 [none]
+[debug] [2024-09-15T13:45:44.185Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.7469460749850483622 200
+[debug] [2024-09-15T13:45:44.193Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/cp.7469460749850483622 {"name":"operations/cp.7469460749850483622","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","ready":true},"done":true,"error":{"code":8,"message":"The project cannot be created because you have exceeded your allotted project quota.","details":[{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"description":"The project cannot be created because you have exceeded your allotted project quota."}]}]}}
+[debug] [2024-09-15T13:45:44.219Z] FirebaseError: The project cannot be created because you have exceeded your allotted project quota.
+    at OperationPoller.poll (/nix/store/pf4ama10fsjb161xrxgsyqi21qm10wc6-firebase-tools-13.13.1/lib/node_modules/firebase-tools/lib/operation-poller.js:24:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createCloudProject (/nix/store/pf4ama10fsjb161xrxgsyqi21qm10wc6-firebase-tools-13.13.1/lib/node_modules/firebase-tools/lib/management/projects.js:186:29)
+    at async createFirebaseProjectAndLog (/nix/store/pf4ama10fsjb161xrxgsyqi21qm10wc6-firebase-tools-13.13.1/lib/node_modules/firebase-tools/lib/management/projects.js:45:9)
+    at async promptAndCreateNewProject (/nix/store/pf4ama10fsjb161xrxgsyqi21qm10wc6-firebase-tools-13.13.1/lib/node_modules/firebase-tools/lib/init/features/project.js:32:12)
+    at async doSetup (/nix/store/pf4ama10fsjb161xrxgsyqi21qm10wc6-firebase-tools-13.13.1/lib/node_modules/firebase-tools/lib/init/features/project.js:88:27)
+    at async init (/nix/store/pf4ama10fsjb161xrxgsyqi21qm10wc6-firebase-tools-13.13.1/lib/node_modules/firebase-tools/lib/init/index.js:40:9)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
