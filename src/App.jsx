@@ -137,7 +137,7 @@ export default function App() {
         <div id="send-button-container"></div>
         <button id="send-button" type="submit">Start</button>
       </form>
-      <p id="creator">Made with 🖤 by&nbsp;&nbsp;<a href="https://github.com/RhazeCoder" target='_blank'>RhazeCoder</a></p>
+      <p id="creator">Made with 🖤 by&nbsp;&nbsp;<a href="https://github.com/rhazeDev" target='_blank'>rhazeDev</a></p>
     </>
   );
 }
